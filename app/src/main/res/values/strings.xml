@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Components</string>
+    <string-array name="food_array">
+        <item>Drink</item>
+        <item>Sandwich</item>
+        <item>Ice Scream</item>
+        <item>Cake</item>
+    </string-array>
 </resources>
