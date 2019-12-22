@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Components</string>
+    <string name="progress">Run progressBar</string>
+    <string name="progressStop">Stop progressBar</string>
+    <string name="screen_enable">The screen is enable, press button \"back\" to able screen again</string>
     <string-array name="food_array">
         <item>Drink</item>
         <item>Sandwich</item>
