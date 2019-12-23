@@ -13,7 +13,8 @@ import com.manoelh.components.R
 import com.manoelh.components.mock.Mock
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener,
+    SeekBar.OnSeekBarChangeListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
         val id = view.id
         if (id == R.id.buttonToast)
             showToast()
-        else if (id == R.id.buttomSnackbar)
+        else if (id == R.id.buttonSnackbar)
             showSnackbar()
         else if (id == R.id.buttonGetSpinner)
             getValueSpinner()
@@ -35,23 +36,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
             setValueSpinner()
         else if (id == R.id.buttonProgress)
             changeVisibilityProgressBar()
+        else if (id == R.id.buttonGetSeekBar)
+            getValueSeekbar()
+        else if (id == R.id.buttonSetSeekBar)
+            setValueSeekbar()
     }
 
     private fun setListeners(){
         buttonToast.setOnClickListener(this)
-        buttomSnackbar.setOnClickListener(this)
+        buttonSnackbar.setOnClickListener(this)
         buttonGetSpinner.setOnClickListener(this)
         buttonSetSpinner.setOnClickListener(this)
-        spinnerDynamic.onItemSelectedListener = this
         buttonProgress.setOnClickListener(this)
+        buttonGetSeekBar.setOnClickListener(this)
+        buttonSetSeekBar.setOnClickListener(this)
+        spinnerDynamic.onItemSelectedListener = this
+        seekBar.setOnSeekBarChangeListener(this)
     }
 
     private fun showToast(){
-        /*var toast = Toast.makeText(applicationContext, "This is a toast notification", Toast.LENGTH_LONG)
+        /*var toast = Toast.makeText(this, "This is a toast notification", Toast.LENGTH_LONG)
         toast.view.findViewById<TextView>(android.R.id.message).setTextColor(Color.MAGENTA)
         toast.show()*/
 
-        var toast2 = Toast.makeText(applicationContext, "", Toast.LENGTH_LONG)
+        var toast2 = Toast.makeText(this, "", Toast.LENGTH_LONG)
         var inflater = layoutInflater.inflate(R.layout.toast_custom, null)
         toast2.view = inflater
         toast2.view.findViewById<TextView>(R.id.toastCustom).text = "Toast notification"
@@ -64,7 +72,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
         snackbar.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).text = "Snackbar custom"
         snackbar.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).setTextColor(Color.WHITE)
         snackbar.view.setBackgroundColor(Color.GRAY)
-        snackbar.view.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.colorPrimaryDark))
+        snackbar.view.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
         snackbar.setAction("Undo") {
             Snackbar.make(constraintLayout, "Undone", Snackbar.LENGTH_LONG).show()
         }
@@ -74,7 +82,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
 
     private fun loadSpinner(){
         val animals = Mock.getListAnimals()
-        val adapter = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_dropdown_item, animals)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, animals)
         spinnerDynamic.adapter = adapter
     }
 
@@ -82,11 +90,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+        val id = view.id
+        if (id == R.id.spinnerDynamic){
+        //TODO someting implementation
+        }
     }
 
     private fun getValueSpinner(){
-        var  spinnervalue = spinnerDynamic.selectedItem
-        Toast.makeText(applicationContext, "get item: $spinnervalue", Toast.LENGTH_LONG).show()
+        val  spinnervalue = spinnerDynamic.selectedItem
+        Toast.makeText(this, "get item: $spinnervalue", Toast.LENGTH_LONG).show()
     }
 
     private fun setValueSpinner(){
@@ -110,5 +122,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
     override fun onBackPressed(){
         window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
         textViewScreenEnable.visibility = TextView.INVISIBLE
+    }
+
+    private fun getValueSeekbar(){
+        Toast.makeText(this, "Get seekbar, volume: ${seekBar.progress}", Toast.LENGTH_LONG).show()
+    }
+
+    private fun setValueSeekbar(){
+        seekBar.progress += 10
+        textViewSeekBar.text = "volume: ${seekBar.progress}"
+    }
+
+    override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+        val id = seekBar.id
+        if (id == R.id.seekBar)
+            textViewSeekBar.text = "volume: $progress"
+    }
+
+    override fun onStartTrackingTouch(seekBar: SeekBar) {
+    }
+
+    override fun onStopTrackingTouch(seekBar: SeekBar) {
     }
 }

@@ -3,6 +3,13 @@
     <string name="progress">Run progressBar</string>
     <string name="progressStop">Stop progressBar</string>
     <string name="screen_enable">The screen is enable, press button \"back\" to able screen again</string>
+    <string name="toast_button">Toast</string>
+    <string name="snackbar_button">snackbar</string>
+    <string name="button_get_spinner">Get spinner</string>
+    <string name="button_set_spinner">Set spinner</string>
+    <string name="text_view_seekbar">volume: 0</string>
+    <string name="button_set_seekbar">Set +10 on seekbar</string>
+    <string name="button_get_seekbar">Get seekbar</string>
     <string-array name="food_array">
         <item>Drink</item>
         <item>Sandwich</item>

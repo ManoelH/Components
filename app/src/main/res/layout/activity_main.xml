@@ -5,24 +5,24 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
+    android:layout_margin="10dp"
     tools:context=".activity.MainActivity">
 
     <Button
         android:id="@+id/buttonToast"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:text="Toast"
+        android:text="@string/toast_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttomSnackbar"
+        android:id="@+id/buttonSnackbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="snackbar"
+        android:text="@string/snackbar_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,11 +32,12 @@
         android:id="@+id/spinnerStatic"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="28dp"
         android:entries="@array/food_array"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttomSnackbar"
+        app:layout_constraintStart_toEndOf="@+id/buttonSnackbar"
         app:layout_constraintTop_toBottomOf="@+id/buttonToast" />
 
     <Spinner
@@ -55,7 +56,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
         android:elevation="2dp"
-        android:text="Get spinner"
+        android:text="@string/button_get_spinner"
         app:layout_constraintEnd_toStartOf="@+id/buttonSetSpinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerDynamic" />
@@ -67,16 +68,10 @@
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
         android:elevation="2dp"
-        android:text="Set spinner"
+        android:text="@string/button_set_spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/spinnerDynamic" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="left" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -111,6 +106,7 @@
         android:indeterminate="false"
         android:indeterminateDuration="100"
         android:visibility="invisible"
+        android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonProgress" />
@@ -135,8 +131,43 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:max="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonProgress" />
+
+    <TextView
+        android:id="@+id/textViewSeekBar"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/text_view_seekbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+    <Button
+        android:id="@+id/buttonGetSeekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:text="@string/button_get_seekbar"
+        android:elevation="1dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+    <Button
+        android:id="@+id/buttonSetSeekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:text="@string/button_set_seekbar"
+        android:elevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
