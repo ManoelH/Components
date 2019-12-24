@@ -1,5 +1,6 @@
 package com.manoelh.components.activity
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -40,6 +41,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
             getValueSeekbar()
         else if (id == R.id.buttonSetSeekBar)
             setValueSeekbar()
+        else if (id == R.id.imageViewNextActivity)
+            openDateActivity()
     }
 
     private fun setListeners(){
@@ -50,6 +53,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
         buttonProgress.setOnClickListener(this)
         buttonGetSeekBar.setOnClickListener(this)
         buttonSetSeekBar.setOnClickListener(this)
+        imageViewNextActivity.setOnClickListener(this)
         spinnerDynamic.onItemSelectedListener = this
         seekBar.setOnSeekBarChangeListener(this)
     }
@@ -143,5 +147,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
     }
 
     override fun onStopTrackingTouch(seekBar: SeekBar) {
+    }
+
+    private fun openDateActivity(){
+        val intent = Intent(this, DateActivity::class.java)
+        startActivity(intent)
     }
 }
